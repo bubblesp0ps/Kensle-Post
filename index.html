@@ -2,20 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kensle Post - Parcel Tracking</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f6f8; padding: 20px; display: flex; justify-content: center; }
-  .card { background: #fff; max-width: 460px; width: 100%; border-radius: 12px; padding: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid #e1e4e8; }
-  .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ea0029; padding-bottom: 12px; }
-  .brand { font-size: 20px; font-weight: 800; color: #ea0029; letter-spacing: -0.5px; }
-  .status-badge { background: #e6f4ea; color: #137333; font-weight: 700; padding: 4px 10px; border-radius: 20px; font-size: 13px; }
-  .timeline { margin-top: 24px; border-left: 3px solid #e1e4e8; padding-left: 20px; position: relative; }
-  .step { margin-bottom: 20px; position: relative; opacity: 0.35; }
-  .step.active { opacity: 1; font-weight: 600; }
-  .step.done { opacity: 0.85; }
-  .step::before { content: ""; position: absolute; left: -28px; top: 3px; width: 13px; height: 13px; border-radius: 50%; background: #ccc; }
-  .step.done::before { background: #137333; }
-  .step.active::before { background: #ea0029; box-shadow: 0 0 0 3px rgba(234,0,41,0.2); }
-  .time { font-size: 11px; color: #666; display: block; font-weight: normal; margin-top: 2px; }
+  * { box-sizing: border-box; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background: #f4f6f8; 
+    padding: 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+    margin: 0;
+  }
+  .card { 
+    background: #fff; 
+    max-width: 460px; 
+    width: 100%; 
+    border-radius: 12px; 
+    padding: 24px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+    border: 1px solid #e1e4e8; 
+  }
+  .header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    border-bottom: 2px solid #ea0029; 
+    padding-bottom: 12px; 
+  }
+  .brand { 
+    font-size: 20px; 
+    font-weight: 800; 
+    color: #ea0029; 
+    letter-spacing: -0.5px; 
+  }
+  .status-badge { 
+    background: #e6f4ea; 
+    color: #137333; 
+    font-weight: 700; 
+    padding: 4px 10px; 
+    border-radius: 20px; 
+    font-size: 13px; 
+  }
+  .meta-info {
+    margin-top: 15px; 
+    font-size: 13px; 
+    color: #444;
+    line-height: 1.6;
+  }
+  .timeline { 
+    margin-top: 24px; 
+    border-left: 3px solid #e1e4e8; 
+    padding-left: 20px; 
+    position: relative; 
+  }
+  .step { 
+    margin-bottom: 20px; 
+    position: relative; 
+    opacity: 0.35; 
+  }
+  .step.active { 
+    opacity: 1; 
+    font-weight: 600; 
+  }
+  .step.done { 
+    opacity: 0.85; 
+  }
+  .step::before { 
+    content: ""; 
+    position: absolute; 
+    left: -28px; 
+    top: 3px; 
+    width: 13px; 
+    height: 13px; 
+    border-radius: 50%; 
+    background: #ccc; 
+  }
+  .step.done::before { 
+    background: #137333; 
+  }
+  .step.active::before { 
+    background: #ea0029; 
+    box-shadow: 0 0 0 3px rgba(234,0,41,0.2); 
+  }
+  .time { 
+    font-size: 11px; 
+    color: #666; 
+    display: block; 
+    font-weight: normal; 
+    margin-top: 2px; 
+  }
 </style>
 </head>
 <body>
@@ -23,36 +101,36 @@
 <div class="card">
   <div class="header">
     <div class="brand">📮 KENSLE POST</div>
-    <span class="status-badge" id="badge">TRACKING LIVE</span>
+    <span class="status-badge" id="badge">DISPATCHED</span>
   </div>
   
-  <div style="margin-top: 15px; font-size: 13px; color: #444;">
-    <strong>Tracking ID:</strong> <span id="trackCode">KN-88219-GB</span><br>
-    <strong>Courier:</strong> SwiftHound Express (Route 7)
+  <div class="meta-info">
+    <strong>Carrier:</strong> Kensle Post (Fleet Unit 12)<br>
+    <strong>Origin:</strong> Big Bag Energy Kensle<br>
+    <strong>Estimated Delivery:</strong> Today / Tomorrow
   </div>
 
   <div class="timeline" id="timeline">
     <div class="step done" id="s1">
       Order Data Received
-      <span class="time">Big Bag Energy Fulfilled</span>
+      <span class="time">Big Bag Energy Fulfilled & Manifested</span>
     </div>
     <div class="step" id="s2">
       Processed at Depot
-      <span class="time">Kensle Central Hub (Scent & Scan Cleared)</span>
+      <span class="time">Kensle Post Central Sorting Facility</span>
     </div>
     <div class="step" id="s3">
       Out for Delivery
-      <span class="time">Loaded onto Local Transit Van</span>
+      <span class="time">Kensle Post Local Delivery Route</span>
     </div>
     <div class="step" id="s4">
       Delivered
-      <span class="time">Left on Porch / Secure Hatch</span>
+      <span class="time">Left at Front Door / Mail Slot</span>
     </div>
   </div>
 </div>
 
 <script>
-  // Simple simulator: updates steps based on seconds or stored timestamp
   const now = new Date();
   const mins = now.getMinutes();
 
@@ -62,9 +140,23 @@
   const s4 = document.getElementById('s4');
   const badge = document.getElementById('badge');
 
-  // Progressive simulation based on time of visit
-  if (mins >= 10) { s2.className = "step done"; s3.className = "step active"; badge.innerText = "OUT FOR DELIVERY"; }
-  if (mins >= 35) { s3.className = "step done"; s4.className = "step active done"; badge.innerText = "DELIVERED"; badge.style.background = "#e6f4ea"; }
+  if (mins >= 10 && mins < 35) { 
+    s2.className = "step done"; 
+    s3.className = "step active"; 
+    badge.innerText = "OUT FOR DELIVERY"; 
+    badge.style.background = "#e8f0fe";
+    badge.style.color = "#1a73e8";
+  } else if (mins >= 35) { 
+    s2.className = "step done";
+    s3.className = "step done"; 
+    s4.className = "step active done"; 
+    badge.innerText = "DELIVERED"; 
+    badge.style.background = "#e6f4ea"; 
+    badge.style.color = "#137333";
+  } else {
+    s2.className = "step active";
+    badge.innerText = "IN TRANSIT";
+  }
 </script>
 
 </body>
